@@ -1,0 +1,107 @@
+#:import utils kivy.utils
+#:set background "#4c3f8e"
+
+Interface:
+
+<interface>:
+    orientation: "vertical"
+    padding: "10dp"
+    # canvas:
+    #     Color:
+    #         rgba:utils.get_color_from(background)
+
+    Label:
+        text: "ROCK PAPER SCISSORS"
+        font_name: "RESOURCES_KIVY/1_THE_LAB/RESOURCES/fonts/Lcd.ttf"
+        font_size: "50dp"
+        pos_hint: {"top": 1}
+        size_hint: 1, .2
+        color: .6, .63, .4, 1
+        # font_size: "25dp"
+
+    GridLayout:
+        cols: 2
+        padding: "30dp"
+        spacing: "20dp"
+        size_hint: 1, 1
+        Label:
+            text: "Player"
+            font_name: "RESOURCES_KIVY/1_THE_LAB/RESOURCES/fonts/Lcd.ttf"
+            font_size: "40dp"
+        Label:
+            text: "Computer"
+            font_name: "RESOURCES_KIVY/1_THE_LAB/RESOURCES/fonts/Lcd.ttf"
+            font_size: "40dp"
+        Label:
+            text: root.user_score
+            font_name: "RESOURCES_KIVY/1_THE_LAB/RESOURCES/fonts/Lcd.ttf"
+            font_size: "50dp"
+        Label:
+            text: root.computer_score
+            font_name: "RESOURCES_KIVY/1_THE_LAB/RESOURCES/fonts/Lcd.ttf"
+            font_size: "50dp"
+    Label:
+        text: root.weapon_choice
+        font_name: "RESOURCES_KIVY/1_THE_LAB/RESOURCES/fonts/Lcd.ttf"
+        font_size: "30dp"
+        size_hint: .7, .01
+        pos_hint: {"center_x": .5}
+
+    BoxLayout:
+        size_hint: .8, 1
+        pos_hint: {"center_x": .5}
+        GridLayout:
+            cols: 3
+            spacing: "10dp"
+            padding: "30dp"
+            ToggleButton:
+                id: rock
+                group: "weapon"
+                size_hint: .5, 1
+                on_state: root.on_toggle_rock(self)
+                Image:
+                    source: "rps icon/rock1.jpg"
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    # size: self.parent.size
+                    # size_hint_x: self.parent.size_hint_x
+                    # size_hint_y: self.parent.size_hint_y
+                    allow_stretch: True
+                    keep_ratio: False
+
+            ToggleButton:
+                id: paper
+                group: "weapon"
+                size_hint: .5, 1
+                on_state: root.on_toggle_paper(self)
+                Image:
+                    source: "rps icon/paper1.jpg"
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    allow_stretch: True
+                    keep_ratio: False
+
+            ToggleButton:
+                id: scissors
+                group: "weapon"
+                size_hint: .5, 1
+                on_state: root.on_toggle_scissors(self)
+                Image:
+                    source: "rps icon/scissors1.jpg"
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    allow_stretch: True
+                    keep_ratio: False
+
+    Label:
+        id: outcome
+        # text: root.outcome
+        font_name: "RESOURCES_KIVY/1_THE_LAB/RESOURCES/fonts/Lcd.ttf"
+        font_size: "30dp"
+        size_hint: .7, .3
+        pos_hint: {"center_x": .5}
+
+    Button:
+        text: "PLAY"
+        on_press: root.on_play_button()
+        disabled: root.play_button_disabled
